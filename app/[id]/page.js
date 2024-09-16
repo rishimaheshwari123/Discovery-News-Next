@@ -20,6 +20,7 @@ export default async function SingleNews({ params }) {
 
   try {
     news = await getSingleNews(id);
+    console.log(news.images[0].url)
   } catch (error) {
     // Handle the error gracefully in the UI
     return <div>Error loading news: {error.message}</div>;
@@ -46,11 +47,11 @@ export default async function SingleNews({ params }) {
                   alt="not showing"
                   className="w-full h-auto object-cover rounded-md"
                 />
-{/*         
+        
           <div className="leading-7">
             <span className="font-bold">{news?.location} {" | "}</span>
             <span dangerouslySetInnerHTML={{ __html: news?.description || '' }}></span>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
@@ -68,7 +69,7 @@ export function generateMetadata({ params }) {
       title: news.title,
       description: news.description,
       url: `https://next-js-sable-ten.vercel.app/${news.slug}`,
-      image: news.images[0]?.url, // or a default image if none exists
+      image: news.images[0].url || "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg", // or a default image if none exists
     }
   })).catch(error => ({
     title: 'Error loading news',
