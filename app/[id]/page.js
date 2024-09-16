@@ -62,7 +62,7 @@ export function generateMetadata({ params }) {
       title: news.title,
       description: news.description,
       url: `https://next-js-sable-ten.vercel.app/${news.slug}`,
-      image: news.images?.[0]?.url, // or a default image if none exists
+      image: news.images[0]?.[0]?.url, // or a default image if none exists
     }
   })).catch(error => ({
     title: 'Error loading news',
