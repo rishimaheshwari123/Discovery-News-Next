@@ -30,8 +30,8 @@ export default function Home() {
 
 export function generateMetadata({
   params
-}){
-  return{
-    title:"test js"
+}) {
+  return {
+    title: "test js"
   }
 }
