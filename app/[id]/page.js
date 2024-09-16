@@ -48,36 +48,47 @@ export default async function SingleNews({ params }) {
                   className="w-full h-auto object-cover rounded-md"
                 />
         
-          {/* <div className="leading-7">
+          <div className="leading-7">
             <span className="font-bold">{news?.location} {" | "}</span>
             <span dangerouslySetInnerHTML={{ __html: news?.description || '' }}></span>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }) {
   const { id } = params;
 
-  // Assuming getSingleNews is available in this scope
-  return getSingleNews(id).then(news => ({
-    title: news.title,
-    description: news.description,
-    image: news.images[0].url || "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg", // or a default image if none exists
-
-    openGraph: {
+  try {
+    const news = await getSingleNews(id);
+    const imageUrl = news.images[0]?.url || "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg"; // Default image if none exists
+  
+    return {
       title: news.title,
       description: news.description,
-      url: `https://next-js-sable-ten.vercel.app/${news.slug}`,
-      image: news.images[0].url || "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg", // or a default image if none exists
-    }
-  })).catch(error => ({
-    title: 'Error loading news',
-    openGraph: {
+      icons: {
+        icon: imageUrl,
+      },
+      openGraph: {
+        title: news.title,
+        description: news.description,
+        url: `https://next-js-sable-ten.vercel.app/${news.slug}`,
+        image: imageUrl,
+        icons: {
+          icon: imageUrl,
+        },
+      },
+    };
+  } catch (error) {
+    return {
       title: 'Error loading news',
-      description: error.message,
-    }
-  }));
+      openGraph: {
+        title: 'Error loading news',
+        description: error.message,
+        image: "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg", // Default image for error
+      },
+    };
+  }
 }
