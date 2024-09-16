@@ -48,10 +48,10 @@ export default async function SingleNews({ params }) {
                   className="w-full h-auto object-cover rounded-md"
                 />
         
-          {/* <div className="leading-7">
+          <div className="leading-7">
             <span className="font-bold">{news?.location} {" | "}</span>
             <span dangerouslySetInnerHTML={{ __html: news?.description || '' }}></span>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
@@ -61,8 +61,7 @@ export default async function SingleNews({ params }) {
 
 
 function stripHtmlTags(html) {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || "";
+  return html.replace(/<\/?[^>]+(>|$)/g, ""); // Regex to remove HTML tags
 }
 
 export async function generateMetadata({ params }) {
@@ -80,7 +79,7 @@ export async function generateMetadata({ params }) {
       },
       openGraph: {
         title: news.title,
-        description: stripHtmlTags(news.description),
+    description: stripHtmlTags(news.description),
         url: `https://next-js-sable-ten.vercel.app/${news.slug}`,
         image: imageUrl,
         icons: {
