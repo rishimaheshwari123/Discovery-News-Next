@@ -48,14 +48,21 @@ export default async function SingleNews({ params }) {
                   className="w-full h-auto object-cover rounded-md"
                 />
         
-          <div className="leading-7">
+          {/* <div className="leading-7">
             <span className="font-bold">{news?.location} {" | "}</span>
             <span dangerouslySetInnerHTML={{ __html: news?.description || '' }}></span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
   );
+}
+
+
+
+function stripHtmlTags(html) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || "";
 }
 
 export async function generateMetadata({ params }) {
@@ -63,17 +70,17 @@ export async function generateMetadata({ params }) {
 
   try {
     const news = await getSingleNews(id);
-    const imageUrl = news.images[0]?.url || "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg"; // Default image if none exists
+    const imageUrl = news.images[0]?.url || ""
   
     return {
       title: news.title,
-      description: news.description,
+      description: stripHtmlTags(news.description),
       icons: {
         icon: imageUrl,
       },
       openGraph: {
         title: news.title,
-        description: news.description,
+        description: stripHtmlTags(news.description),
         url: `https://next-js-sable-ten.vercel.app/${news.slug}`,
         image: imageUrl,
         icons: {
