@@ -48,10 +48,10 @@ export default async function SingleNews({ params }) {
                   className="w-full h-auto object-cover rounded-md"
                 />
         
-          <div className="leading-7">
+          {/* <div className="leading-7">
             <span className="font-bold">{news?.location} {" | "}</span>
             <span dangerouslySetInnerHTML={{ __html: news?.description || '' }}></span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
@@ -64,7 +64,9 @@ export function generateMetadata({ params }) {
   // Assuming getSingleNews is available in this scope
   return getSingleNews(id).then(news => ({
     title: news.title,
-    description: news.description, // add description if needed
+    description: news.description,
+    image: news.images[0].url || "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg", // or a default image if none exists
+
     openGraph: {
       title: news.title,
       description: news.description,
