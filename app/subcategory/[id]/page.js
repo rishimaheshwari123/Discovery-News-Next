@@ -7,6 +7,10 @@ import NewsActive from "../../component/Home/RightSide/NewsActive";
 import Contact from "../../component/singleNews/Contact";
 import { useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import SubNavbar from "../../component/Top Section/SubSection";
+import LogoSpace from "../../component/Top Section/LogoSection";
+import Navbar from "../../component/Top Section/Navbar";
 
 const SubCategoryPage = () => {
     const [category, setCategory] = useState(null);
@@ -141,109 +145,113 @@ const SubCategoryPage = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto p-4">
-            <div className="flex flex-col lg:flex-row gap-5">
-                {/* News Details */}
-                <div className="lg:w-[75%] w-full flex flex-col">
-                    <div>
-                        <div className="flex justify-between mb-4 relative">
-                            <p className="min-w-full min-h-[1px] bg-[#ed0302] absolute bottom-0"></p>
-                            <p className="flex items-center gap-2 font-bold text-lg text-black p-2 ">
-                                {category?.name}
-                            </p>
-                        </div>
-
+        <div>
+            <SubNavbar />
+            <LogoSpace />
+            <Navbar />
+            <div className="max-w-7xl mx-auto p-4">
+                <div className="flex flex-col lg:flex-row gap-5">
+                    {/* News Details */}
+                    <div className="lg:w-[75%] w-full flex flex-col">
                         <div>
-                            {/* News */}
-                            <div>
-                                <div className="flex gap-3 grid-cols-1 mt-8 p-2 flex-col">
-                                    {news.length > 0 ? (
-                                        news?.map((currElem) => {
-                                            const strippedDescription = stripHtmlTags(
-                                                currElem.description
-                                            );
-                                            const truncatedDescription = truncateText(
-                                                strippedDescription,
-                                                25
-                                            );
+                            <div className="flex justify-between mb-4 relative">
+                                <p className="min-w-full min-h-[1px] bg-[#ed0302] absolute bottom-0"></p>
+                                <p className="flex items-center gap-2 font-bold text-lg text-black p-2 ">
+                                    {category?.name}
+                                </p>
+                            </div>
 
-                                            return (
-                                                <Link to={`/${currElem?.slug}`} key={currElem._id}>
-                                                    <div className="flex gap-3">
-                                                        <img
-                                                            src={currElem?.images[0]?.url}
-                                                            alt={currElem.title}
-                                                            className="w-[125px]"
-                                                        />
-                                                        <div>
-                                                            <p className="text-wrap mt-2 text-[20px]">
-                                                                {truncateText(currElem.title, 10)}
-                                                            </p>
-                                                            <p className="text-xs text-gray-500">
-                                                                {formatDate(currElem.createdAt)}
-                                                            </p>
-                                                            <p className="text-wrap mt-2 text-[16px] leading-8 lg:block hidden">
-                                                                {truncatedDescription}
-                                                            </p>
+                            <div>
+                                {/* News */}
+                                <div>
+                                    <div className="flex gap-3 grid-cols-1 mt-8 p-2 flex-col">
+                                        {news.length > 0 ? (
+                                            news?.map((currElem) => {
+                                                const strippedDescription = stripHtmlTags(
+                                                    currElem.description
+                                                );
+                                                const truncatedDescription = truncateText(
+                                                    strippedDescription,
+                                                    25
+                                                );
+
+                                                return (
+                                                    <Link href={`/${currElem?.slug}`} key={currElem._id}>
+                                                        <div className="flex gap-3">
+                                                            <img
+                                                                src={currElem?.images[0]?.url}
+                                                                alt={currElem.title}
+                                                                className="w-[125px]"
+                                                            />
+                                                            <div>
+                                                                <p className="text-wrap mt-2 text-[20px]">
+                                                                    {truncateText(currElem.title, 10)}
+                                                                </p>
+                                                                <p className="text-xs text-gray-500">
+                                                                    {formatDate(currElem.createdAt)}
+                                                                </p>
+                                                                <p className="text-wrap mt-2 text-[16px] leading-8 lg:block hidden">
+                                                                    {truncatedDescription}
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </Link>
-                                            );
-                                        })
-                                    ) : (
-                                        <p className="text-center font-bold text-xl">
-                                            No news found...
-                                        </p>
-                                    )}
+                                                    </Link>
+                                                );
+                                            })
+                                        ) : (
+                                            <p className="text-center font-bold text-xl">
+                                                No news found...
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Pagination */}
+                                <div className="flex justify-center mt-4">
+                                    {renderPageNumbers()}
+                                    <button
+                                        onClick={() => handlePageChange(currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                        className={`px-4 py-2 mx-1 border ${currentPage === totalPages
+                                            ? "bg-gray-300 text-white cursor-not-allowed"
+                                            : "bg-white text-black"
+                                            }`}
+                                    >
+                                        Next
+                                    </button>
+                                    <button
+                                        onClick={() => handlePageChange(totalPages)}
+                                        disabled={currentPage === totalPages}
+                                        className={`px-4 py-2 mx-1 border ${currentPage === totalPages
+                                            ? "bg-gray-300 text-white cursor-not-allowed"
+                                            : "bg-white text-black"
+                                            }`}
+                                    >
+                                        Last
+                                    </button>
                                 </div>
                             </div>
+                        </div>
 
-                            {/* Pagination */}
-                            <div className="flex justify-center mt-4">
-                                {renderPageNumbers()}
-                                <button
-                                    onClick={() => handlePageChange(currentPage + 1)}
-                                    disabled={currentPage === totalPages}
-                                    className={`px-4 py-2 mx-1 border ${currentPage === totalPages
-                                        ? "bg-gray-300 text-white cursor-not-allowed"
-                                        : "bg-white text-black"
-                                        }`}
-                                >
-                                    Next
-                                </button>
-                                <button
-                                    onClick={() => handlePageChange(totalPages)}
-                                    disabled={currentPage === totalPages}
-                                    className={`px-4 py-2 mx-1 border ${currentPage === totalPages
-                                        ? "bg-gray-300 text-white cursor-not-allowed"
-                                        : "bg-white text-black"
-                                        }`}
-                                >
-                                    Last
-                                </button>
+                        <div className="mt-8">
+                            <Contact />
+                        </div>
+                    </div>
+
+                    {/* New News */}
+                    <div className="lg:w-[30%]">
+                        <NewsActive />
+                        <div className="mt-[50px]">
+                            <div className="flex justify-between mb-4 relative">
+                                <p className="min-w-full min-h-[2px] bg-[#ed0302] absolute bottom-0"></p>
+                                <p className="flex items-center gap-2 font-bold text-lg bg-[#ed0302] text-white p-2 relative">
+                                    Cricket Score
+                                </p>
+                            </div>
+                            <div>
+                                <CricketLive />
                             </div>
                         </div>
-                    </div>
-
-                    <div className="mt-8">
-                        <Contact />
-                    </div>
-                </div>
-
-                {/* New News */}
-                <div className="lg:w-[30%]">
-                    <NewsActive />
-                    <div className="mt-[50px]">
-                        <div className="flex justify-between mb-4 relative">
-                            <p className="min-w-full min-h-[2px] bg-[#ed0302] absolute bottom-0"></p>
-                            <p className="flex items-center gap-2 font-bold text-lg bg-[#ed0302] text-white p-2 relative">
-                                Cricket Score
-                            </p>
-                        </div>
-                        <div>
-                            <CricketLive />
-                        </div>
-                    </div>
 
 
 
@@ -251,7 +259,7 @@ const SubCategoryPage = () => {
 
 
 
-                    {/* <div>
+                        {/* <div>
         <div className="mt-[50px]">
         <div className=" flex justify-between mb-4 relative">
                 <p className=" min-w-full min-h-[2px] bg-[#ed0302] absolute bottom-0 "></p>
@@ -284,42 +292,43 @@ const SubCategoryPage = () => {
           </div>
         </div>
         </div> */}
-                    {/* Dharm And JYotishi */}
+                        {/* Dharm And JYotishi */}
 
-                    <div>
-                        <div className="mt-[50px]">
-                            <div className=" flex justify-between mb-4 relative">
-                                <p className=" min-w-full min-h-[2px] bg-[#ed0302] absolute bottom-0 "></p>
-                                <p className=" flex items-center gap-2 font-bold text-lg bg-[#ed0302] text-white p-2 relative wf">
-                                    {" "}
-                                    धर्म एवं ज्योतिष
-                                </p>
+                        <div>
+                            <div className="mt-[50px]">
+                                <div className=" flex justify-between mb-4 relative">
+                                    <p className=" min-w-full min-h-[2px] bg-[#ed0302] absolute bottom-0 "></p>
+                                    <p className=" flex items-center gap-2 font-bold text-lg bg-[#ed0302] text-white p-2 relative wf">
+                                        {" "}
+                                        धर्म एवं ज्योतिष
+                                    </p>
 
-                            </div>
+                                </div>
 
-                            <div>
+                                <div>
 
 
-                                <div className="flex gap-3 grid-cols-1  mt-8 p-2 flex-col">
-                                    {dharm?.map((currElem, index) => (
-                                        <Link to={`/${currElem?.slug}`} key={currElem._id}>
-                                            <div className="flex gap-3">
-                                                <img
-                                                    src={currElem?.images[0]?.url}
-                                                    alt=""
-                                                    className="w-[105px]"
-                                                />
-                                                <p className="text-wrap mt-2 text-sm">
-                                                    {truncateText(currElem.title, 10)}
-                                                </p>
-                                            </div>
-                                        </Link>
-                                    ))}
+                                    <div className="flex gap-3 grid-cols-1  mt-8 p-2 flex-col">
+                                        {dharm?.map((currElem, index) => (
+                                            <Link href={`/${currElem?.slug}`} key={currElem._id}>
+                                                <div className="flex gap-3">
+                                                    <img
+                                                        src={currElem?.images[0]?.url}
+                                                        alt=""
+                                                        className="w-[105px]"
+                                                    />
+                                                    <p className="text-wrap mt-2 text-sm">
+                                                        {truncateText(currElem.title, 10)}
+                                                    </p>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>

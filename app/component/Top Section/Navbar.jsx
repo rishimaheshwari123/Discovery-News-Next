@@ -1,10 +1,10 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaBars, FaHome, FaSearch } from "react-icons/fa";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCategory } from "../../services/operations/admin"; // Adjust path as needed
+import { useSelector } from "react-redux";
+import { fetchCategory } from "../../services/operations/admin";
 import SearchBox from "./SearchBox";
 
 const Navbar = () => {
@@ -40,13 +40,11 @@ const Navbar = () => {
     const fetchCategories = async () => {
       try {
         const categoriesData = await fetchCategory();
-
         // Filter out the "राज्य" category
         const filteredCategories =
           categoriesData?.categories.filter(
             (cat) => cat.name.trim() !== "राज्य"
           ) || [];
-
         reorderCategories(filteredCategories);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -58,7 +56,6 @@ const Navbar = () => {
       const filteredCategories = category.filter(
         (cat) => cat.name.trim() !== "राज्य"
       );
-
       reorderCategories(filteredCategories);
     } else {
       fetchCategories();
@@ -92,26 +89,35 @@ const Navbar = () => {
           <div className="hidden lg:flex ">
             {categories.map((link, index) => (
               <div key={index} className="group relative z-50">
-                <Link href={`/category/${link?._id}`} passHref>
-                  <div
-                    className="text-white hover:bg-gray-100 text-[16px] font-bold hover:text-black px-3"
-                    onClick={handleLinkClick}
-                  >
-                    {link?.name}
-                  </div>
-                </Link>
+                {link?._id && (
+                  <Link href={`/category/${link._id}`} S>
+                    <div
+                      className="text-white hover:bg-gray-100 text-[16px] font-bold hover:text-black px-3"
+                      onClick={handleLinkClick}
+                    >
+                      {link?.name}
+                    </div>
+                  </Link>
+                )}
                 {link?.subCategories && link?.subCategories?.length > 0 && (
                   <div className="absolute left-0 top-8 text-[16px] font-bold bg-red-600 py-2 w-32 hidden group-hover:block text-start">
-                    {link?.subCategories.map((sublink, subIndex) => (
-                      <Link href={`/subcategory/${sublink?._id}`} passHref key={subIndex}>
-                        <div
-                          className="block text-white hover:bg-gray-100 hover:text-black px-3 py-2"
-                          onClick={handleLinkClick}
-                        >
-                          {sublink?.name}
-                        </div>
-                      </Link>
-                    ))}
+                    {link.subCategories.map(
+                      (sublink, subIndex) =>
+                        sublink?._id && (
+                          <Link
+                            href={`/subcategory/${sublink._id}`}
+                            passHref
+                            key={subIndex}
+                          >
+                            <div
+                              className="block text-white hover:bg-gray-100 hover:text-black px-3 py-2"
+                              onClick={handleLinkClick}
+                            >
+                              {sublink?.name}
+                            </div>
+                          </Link>
+                        )
+                    )}
                   </div>
                 )}
               </div>
@@ -131,7 +137,10 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <button onClick={toggleSearch} className="text-white bg-gray-200 rounded-md p-2">
+          <button
+            onClick={toggleSearch}
+            className="text-white bg-gray-200 rounded-md p-2"
+          >
             <FaSearch className="text-black" />
           </button>
 
@@ -150,11 +159,13 @@ const Navbar = () => {
           {categories.map((link, index) => (
             <div key={index} className="border-b border-gray-200">
               <div className="flex justify-between items-center px-4 py-2 cursor-pointer">
-                <Link href={`/category/${link?._id}`} passHref>
-                  <div className="text-white" onClick={handleLinkClick}>
-                    {link?.name}
-                  </div>
-                </Link>
+                {link?._id && (
+                  <Link href={`/category/${link._id}`} passHref>
+                    <div className="text-white" onClick={handleLinkClick}>
+                      {link?.name}
+                    </div>
+                  </Link>
+                )}
                 {link.subCategories && link?.subCategories?.length > 0 && (
                   <>
                     {openDropdown === index ? (
@@ -177,16 +188,23 @@ const Navbar = () => {
               </div>
               {openDropdown === index && link.subCategories && (
                 <div className="bg-black pl-4">
-                  {link.subCategories.map((sublink, subIndex) => (
-                    <Link href={`/subcategory/${sublink?._id}`} passHref key={subIndex}>
-                      <div
-                        className="block text-white px-4 py-2"
-                        onClick={handleLinkClick}
-                      >
-                        {sublink.name}
-                      </div>
-                    </Link>
-                  ))}
+                  {link.subCategories.map(
+                    (sublink, subIndex) =>
+                      sublink?._id && (
+                        <Link
+                          href={`/subcategory/${sublink._id}`}
+                          passHref
+                          key={subIndex}
+                        >
+                          <div
+                            className="block text-white px-4 py-2"
+                            onClick={handleLinkClick}
+                          >
+                            {sublink.name}
+                          </div>
+                        </Link>
+                      )
+                  )}
                 </div>
               )}
             </div>
