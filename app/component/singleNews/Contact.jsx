@@ -1,10 +1,9 @@
-// pages/contact.js
-"use client"
-import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { contact } from '../../../services/operations/admin';
-import { toast } from 'react-toastify';
+"use client";
+import React, { useState, useEffect } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { contact } from "../../services/operations/user";
+import { toast } from "react-toastify";
 
 const generateCaptcha = () => {
   const num1 = Math.floor(Math.random() * 10) + 1;
@@ -21,22 +20,22 @@ const Contact = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      location: '',
-      message: '',
-      captchaAnswer: '',
+      name: "",
+      email: "",
+      location: "",
+      message: "",
+      captchaAnswer: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required('Name is required'),
+      name: Yup.string().required("Name is required"),
       email: Yup.string()
-        .email('Invalid email address')
-        .required('Email is required'),
-      location: Yup.string().required('Location is required'),
-      message: Yup.string().required('Message is required'),
+        .email("Invalid email address")
+        .required("Email is required"),
+      location: Yup.string().required("Location is required"),
+      message: Yup.string().required("Message is required"),
       captchaAnswer: Yup.number()
-        .required('Please solve the captcha')
-        .equals([captcha.result], 'Captcha is incorrect'),
+        .required("Please solve the captcha")
+        .equals([captcha.result], "Captcha is incorrect"),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
@@ -44,17 +43,16 @@ const Contact = () => {
         if (result) {
           setCaptcha(generateCaptcha());
           resetForm();
-          toast.success('Message sent successfully!');
         }
       } catch (error) {
-        toast.error('Failed to submit contact form');
+        toast.error("Failed to submit contact form");
       }
     },
   });
 
   return (
-    <div>
-      <h2 className="text-lg font-semibold bg-red-600 w-fit text-white px-3 py-1">
+    <div className="">
+      <h2 className="text-lg font-semibold  bg-red-600  w-fit text-white px-3 py-1">
         आपकी राय
       </h2>
       <hr className="bg-red-600 h-[2px] -mt-[2px]" />
@@ -68,7 +66,7 @@ const Contact = () => {
             id="message"
             name="message"
             rows="4"
-            className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
+            className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
             onChange={formik.handleChange}
             value={formik.values.message}
           />
@@ -88,7 +86,7 @@ const Contact = () => {
               id="name"
               name="name"
               type="text"
-              className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
+              className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
               onChange={formik.handleChange}
               value={formik.values.name}
             />
@@ -108,7 +106,7 @@ const Contact = () => {
               name="email"
               type="email"
               placeholder="ई-मेल"
-              className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
+              className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
               onChange={formik.handleChange}
               value={formik.values.email}
             />
@@ -129,7 +127,7 @@ const Contact = () => {
             name="location"
             type="text"
             placeholder="शहर"
-            className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
+            className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
             onChange={formik.handleChange}
             value={formik.values.location}
           />
@@ -164,7 +162,7 @@ const Contact = () => {
 
         <button
           type="submit"
-          className="w-full py-3 px-4 bg-gray-600 hover:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+          className="w-full py-3 px-4 bg-gray-600 hover:bg-gray-700 text-white   focus:outline-none focus:ring-2 focus:ring-red-600"
         >
           Submit
         </button>
