@@ -94,7 +94,7 @@ const StatusSlider = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-black"
                     style={{
-                        backgroundImage: `url(${images[currentIndex].url})`,
+                        backgroundImage: `url(${images[currentIndex]?.url})`,
                         backdropFilter: 'blur(50px)',
                         filter: 'blur(50px)', // Fallback for some browsers
                         WebkitBackdropFilter: 'blur(50px)', // For Safari
