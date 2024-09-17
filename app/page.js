@@ -9,6 +9,7 @@ import StateSubcategories from "./component/Home/StateCategories"
 import BreakingNews from "./component/BreakingNews"
 
 export default function Home() {
+  
   return (
     <>
       <SubNavbar />
