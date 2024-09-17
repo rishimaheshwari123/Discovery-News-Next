@@ -28,14 +28,16 @@ const WebStoriesCarousel = () => {
         {stories.map((story, index) => (
           <Link 
             href={`/web-stories/${story._id}`} 
-            key={index} 
-            passHref
+            key={index}
           >
             <div className="min-w-[200px] bg-red-500 rounded overflow-hidden shadow-lg">
-              <img
-                src={story?.images[0]?.url} // Fallback image if URL is missing
+              <Image
+                src={story?.images[0]?.url || '/default-image.jpg'} // Fallback image if URL is missing
                 alt={story.title}
-                className="w-full h-48 object-cover"
+                width={10} // Replace with the actual width or calculated value
+                height={20} // Replace with the actual height or calculated value
+                layout="responsive" // Adjust based on your needs
+                className="object-cover  max-h-48"
               />
               <div className="p-2">
                 <h3 className="text-white text-sm">{story.title[0]}</h3>
@@ -48,7 +50,6 @@ const WebStoriesCarousel = () => {
       <div className="flex justify-center items-center mt-4">
         <Link
           href="/web-stories"
-          passHref
         >
           <button className="bg-red-600 text-white py-2 px-4 rounded">
             View More

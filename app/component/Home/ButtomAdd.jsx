@@ -33,8 +33,7 @@ const ButtomAdd = () => {
                         src={currElem?.image}
                         alt="not found"
                         layout="responsive"
-                        width={500} // Adjust width as needed
-                        height={300} // Adjust height as needed
+                       
                         className="w-full"
                       />
                     </a>
