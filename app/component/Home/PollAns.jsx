@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { IoCloseCircle, IoShareSocial } from "react-icons/io5";
+import { IoShareSocial } from "react-icons/io5";
 import ShareComponent from "./SharedComonnent";
 
 const PolllAns = () => {
@@ -29,10 +29,11 @@ const PolllAns = () => {
   }, []);
 
   const handleVote = async (pollId, optionId) => {
-    // if (votedPolls.has(pollId)) {
-    //   alert("You have already voted on this poll.");
-    //   return;
-    // }
+    // Check if the user has already voted on this poll
+    if (votedPolls.has(pollId)) {
+      alert("You have already voted on this poll.");
+      return;
+    }
 
     try {
       const response = await axios.put(
@@ -84,103 +85,43 @@ const PolllAns = () => {
     }
   };
 
-
-  
-// Add this script to the page
-// window.addEventListener('load', () => {
-//   // Delay the execution by 1 second (1000 milliseconds)
-//   setTimeout(() => {
-//     if (window.location.hash) {
-//       const targetId = window.location.hash.substring(1);
-//       const targetElement = document.getElementById(targetId);
-//       if (targetElement) {
-//         targetElement.scrollIntoView({ behavior: 'smooth' });
-//       }
-//     }
-//   }, 1000); // 1 second delay
-// });
-
-
-
-useEffect(() => {
-  // Scroll to the section if there's a hash in the URL
-  const scrollToHash = () => {
-    if (window.location.hash) {
-      const targetId = window.location.hash.substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        setTimeout(() => {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }, 1000); // Delay of 1 second
+  useEffect(() => {
+    // Scroll to the section if there's a hash in the URL
+    const scrollToHash = () => {
+      if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }, 1000); // Delay of 1 second
+        }
       }
-    }
-  };
+    };
 
-  scrollToHash();
+    scrollToHash();
 
-  // Handle hash change (e.g., when the URL hash changes while the component is mounted)
-  window.addEventListener('hashchange', scrollToHash);
+    // Handle hash change (e.g., when the URL hash changes while the component is mounted)
+    window.addEventListener("hashchange", scrollToHash);
 
-  return () => {
-    window.removeEventListener('hashchange', scrollToHash);
-  };
-}, []);
-
-
-const handleShare = async (question) => {
-  const textToShare = `Votes on poll\n${question}\n\nVisit the latest news:\nhttps://www.discoveryindianews.com/`;
-  const urlToShare = "https://discoveryindianews.com/#pollsvote";
-
-  if (navigator.share) {
-    try {
-      await navigator.share({
-        title: "Poll",
-        text: textToShare,
-        url: urlToShare
-      });
-      console.log("Thanks for sharing!");
-    } catch (error) {
-      console.error("Error sharing:", error);
-    }
-  } else {
-    // Fallback for browsers that do not support the Web Share API
-    prompt("Copy the text and share it:", `${textToShare}\n\n${urlToShare}`);
-  }
-};
-
-
-
-
+    return () => {
+      window.removeEventListener("hashchange", scrollToHash);
+    };
+  }, []);
 
   return (
     <div className="flex justify-center p-4" id="pollsvote">
       <div className="w-full max-w-3xl">
-        <div className=" flex flex-col my-10 ">
-        <h2 className="text-2xl font-bold text-center uppercase ">
-          Let's Vote
-        </h2>
-
-
-
-       
+        <div className="flex flex-col my-10">
+          <h2 className="text-2xl font-bold text-center uppercase">
+            Let&apos;s Vote
+          </h2>
         </div>
         {polls.map((poll) => (
           <div
             key={poll._id}
             className="mb-4 p-4 border border-gray-200 rounded-lg bg-white shadow-md"
           >
-           {/* <div
-            className="bottom-1 z-10 flex text-white font-semibold justify-end mb-4 cursor-pointer"
-            onClick={() => handleShare(poll.question)}
-          >
-            <div className="bg-red-700 flex gap-1 p-1 px-4 rounded-xl">
-              Share This Poll
-              <IoShareSocial
-                size={28}
-                className="text-white bg-red-800 p-1 rounded-full cursor-pointer hover:text-red-500 hover:scale-110 transition-all"
-              />
-            </div>
-          </div> */}
             <ShareComponent question={poll.question} />
             <h3 className="text-xl font-semibold mb-2">{poll.question}</h3>
             <ul>

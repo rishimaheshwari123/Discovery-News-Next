@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { contact } from '../../../services/operations/admin';
+import { contact } from '../../../services/operations/user';
 import { toast } from 'react-toastify';
 
 const generateCaptcha = () => {

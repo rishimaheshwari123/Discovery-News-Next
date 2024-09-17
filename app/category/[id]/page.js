@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import SubNavbar from "../../component/Top Section/SubSection";
 import LogoSpace from "../../component/Top Section/LogoSection";
 import Navbar from "../../component/Top Section/Navbar";
-
+import Image from "next/image";
 
 const CategoryPage = () => {
     const pathname = usePathname();

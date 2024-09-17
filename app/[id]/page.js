@@ -186,7 +186,8 @@ export default async function SingleNews({ params }) {
         {news?.images?.slice(1).length > 0 && (
           <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4">
             {news.images.slice(1).map((imge, index) => (
-              <img
+               <Image  width={500}
+                    height={500}
                 src={imge.url}
                 alt=""
                 key={index}
@@ -230,7 +231,8 @@ export default async function SingleNews({ params }) {
                 {dharm?.map((currElem, index) => (
                   <Link href={`/${currElem?.slug}`} key={currElem._id} passHref>
                     <div className="flex gap-3">
-                      <img
+                       <Image  width={500}
+                    height={500}
                         src={currElem?.images[0]?.url}
                         alt=""
                         className="w-[105px]"
