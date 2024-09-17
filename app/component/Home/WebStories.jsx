@@ -27,7 +27,7 @@ const WebStoriesCarousel = () => {
       <div className="flex overflow-x-auto space-x-4">
         {stories.map((story, index) => (
           <Link 
-            href={`/web-story/${story._id}`} 
+            href={`/web-stories/${story._id}`} 
             key={index} 
             passHref
           >
