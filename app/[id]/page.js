@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import TopAllComponent from '../component/Home/TopAllComponent'
+import Image from "next/image";
 // Fetch news using axios
 async function getSingleNews(id) {
   try {
@@ -163,7 +164,9 @@ export default async function SingleNews({ params }) {
           {/* First Image */}
           <div className="float-left md:w-1/3 w-full md:mr-6 mb-4">
             {news?.images?.[0] && (
-              <img
+              <Image
+              width={500}
+              height={500}
                 src={news.images[0].url}
                 alt=""
                 className="w-full h-auto object-cover rounded-md"

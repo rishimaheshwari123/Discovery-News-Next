@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
 
 const SearchBox = ({ isOpen, toggleSearch }) => {
   const { allNews } = useSelector((state) => state.news);
@@ -66,7 +67,8 @@ const SearchBox = ({ isOpen, toggleSearch }) => {
                     className="flex gap-4 flex-col sm:flex-row"
                     onClick={toggleSearch} // Close search box on click
                   >
-                    <img
+                     <Image  width={500}
+                    height={500}
                       src={news?.images[0]?.url}
                       alt={news.title}
                       className="w-full sm:w-32 h-auto object-cover rounded-lg"

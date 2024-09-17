@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const RightAds = () => {
   const { ads } = useSelector((state) => state.news);
@@ -18,7 +19,8 @@ const RightAds = () => {
         filterAds.map((currElem, index) => (
           <Link href={currElem?.url} key={index} passHref>
             <div className="block mb-4" target="_blank" rel="noopener noreferrer">
-              <img
+               <Image  width={500}
+                    height={500}
                 src={currElem?.image}
                 alt="Ad Image"
                 className="w-full rounded-lg shadow-md hover:shadow-lg transition duration-300"

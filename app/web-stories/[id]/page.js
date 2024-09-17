@@ -5,6 +5,7 @@ import { FaPause, FaPlay } from 'react-icons/fa';
 import { IoIosArrowBack, IoIosArrowForward, IoMdRefresh } from 'react-icons/io';
 import { getStory } from '../../services/operations/admin';
 import { usePathname } from "next/navigation";
+import Image from 'next/image';
 
 const animationTypes = [
     { from: { transform: 'translateX(-100%)', opacity: 0 }, to: { transform: 'translateX(0%)', opacity: 1 } },
@@ -106,8 +107,9 @@ const StatusSlider = () => {
                 {/* Images with animation */}
                 {images.length > 0 && (
                     <animated.div style={imageAnimation} className="w-full h-full absolute">
-                        <img
-                            src={images[currentIndex].url}
+                        <Image  width={500}
+                    height={500}
+                            src={images[currentIndex]?.url}
                             alt={`Slide ${currentIndex + 1}`}
                             className="w-full h-full object-cover"
                         />

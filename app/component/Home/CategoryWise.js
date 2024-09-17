@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import NewsActive from "./RightSide/NewsActive";
 import CricketLive from "./RightSide/CricketLive";
 import RightAds from "./RightSide/RightAds";
+import Image from "next/image";
 
 
 function CategoryWise() {
@@ -68,10 +69,11 @@ function CategoryWise() {
             <div className=" col-span-2">
               {rajneeti[0] && (
                 <Link href={`/${rajneeti[0]?.slug}`} className=" relative">
-                  <img
+                  <Image  width={500}
+                    height={500}
                     src={rajneeti[0]?.images[0]?.url}
                     alt=""
-                    className="lg:h-[320px] h-[250px] lg:w-full -[80%] object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
+                    className="lg:h-[320px] h-[250px]  lg:w-full -[80%] object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
                   />
                   <p className="font-semibold  bottom-0  text- text-gray-500 bg-opacity-60 w-full py-5">
                     {truncateText(rajneeti[0]?.title, 10)}
@@ -89,7 +91,8 @@ function CategoryWise() {
               href={`/${rajneeti[1]?.slug}`}
               className="flex gap-2 mt-4"
             >
-              <img
+              <Image  width={500}
+                    height={500}
                 src={rajneeti[1]?.images[0]?.url}
                 alt=""
                 className="h-[60px]"
@@ -109,10 +112,11 @@ function CategoryWise() {
                     key={news._id}
                     className="mb-4 flex gap-3"
                   >
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={news?.images[0]?.url}
                       alt=""
-                      className="h-[65px] min-w-[110px]"
+                      className="h-[65px] minmaxw-[110px] max-w-[110px]"
                     />
                     <p className="font-semibold text-[12px] ">
                       {truncateText(news?.title, 20)}
@@ -155,7 +159,8 @@ function CategoryWise() {
               <div className=" col-span-2">
                 {desh[0] && (
                   <Link href={`/${desh[0]?.slug}`} className=" relative">
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={desh[0]?.images[0]?.url}
                       alt=""
                       className="lg:h-[320px] h-[250px] lg:w-full   object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -180,10 +185,11 @@ function CategoryWise() {
                       key={news._id}
                       className="mb-4 flex gap-3"
                     >
-                      <img
+                      <Image  width={500}
+                    height={500}
                         src={news?.images[0]?.url}
                         alt=""
-                        className="h-[65px] min-w-[110px]"
+                        className="h-[65px] min-w-[110px] max-w-[110px]"
                       />
                       <p className="font-semibold text-[12px] ">
                         {truncateText(news?.title, 20)}
@@ -225,7 +231,8 @@ function CategoryWise() {
               <div className=" col-span-2">
                 {videsh[0] && (
                   <Link href={`/${videsh[0]?.slug}`} className=" relative">
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={videsh[0]?.images[0]?.url}
                       alt=""
                       className="lg:h-[320px] h-[250px] lg:w-full   object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -250,10 +257,11 @@ function CategoryWise() {
                       key={news._id}
                       className="mb-4 flex gap-3"
                     >
-                      <img
+                      <Image  width={500}
+                    height={500}
                         src={news?.images[0]?.url}
                         alt=""
-                        className="h-[65px] min-w-[110px]"
+                        className="h-[65px] min-w-[110px] max-w-[110px]"
                       />
                       <p className="font-semibold text-[12px] ">
                         {truncateText(news?.title, 20)}
@@ -296,7 +304,8 @@ function CategoryWise() {
             <div className=" " key={news._id}>
               {news && (
                 <Link href={`/${news?.slug}`} className=" relative">
-                  <img
+                  <Image  width={500}
+                    height={500}
                     src={news?.images[0]?.url}
                     alt=""
                     className="max-w-full h-[200px] object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -340,7 +349,8 @@ function CategoryWise() {
             <div className=" " key={news._id}>
               {news && (
                 <Link href={`/${news?.slug}`} className=" relative">
-                  <img
+                  <Image  width={500}
+                    height={500}
                     src={news?.images[0]?.url}
                     alt=""
                     className="max-w-full h-[200px] object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -384,7 +394,8 @@ function CategoryWise() {
             <div className=" " key={news._id}>
               {news && (
                 <Link href={`/${news?.slug}`} className=" relative">
-                  <img
+                  <Image  width={500}
+                    height={500}
                     src={news?.images[0]?.url}
                     alt=""
                     className="max-w-full h-[200px] object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -429,7 +440,8 @@ function CategoryWise() {
               <div className=" col-span-2">
                 {khel[0] && (
                   <Link href={`/${khel[0]?.slug}`} className=" relative">
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={khel[0]?.images[0]?.url}
                       alt=""
                       className="lg:h-[320px] h-[250px] lg:w-full   object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -454,10 +466,11 @@ function CategoryWise() {
                       key={news._id}
                       className="mb-4 flex gap-3"
                     >
-                      <img
+                      <Image  width={500}
+                    height={500}
                         src={news?.images[0]?.url}
                         alt=""
-                        className="h-[65px] min-w-[110px]"
+                        className="h-[65px] min-w-[110px] max-w-[110px]"
                       />
                       <p className="font-semibold text-[12px] ">
                         {truncateText(news?.title, 20)}
@@ -499,7 +512,8 @@ function CategoryWise() {
               <div className=" col-span-2">
                 {manoranjan[0] && (
                   <Link href={`/${manoranjan[0]?.slug}`} className=" relative">
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={manoranjan[0]?.images[0]?.url}
                       alt=""
                       className="lg:h-[320px] h-[250px] lg:w-full   object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -524,10 +538,11 @@ function CategoryWise() {
                       key={news._id}
                       className="mb-4 flex gap-3"
                     >
-                      <img
+                      <Image  width={500}
+                    height={500}
                         src={news?.images[0]?.url}
                         alt=""
-                        className="h-[65px] min-w-[110px]"
+                        className="h-[65px] min-w-[110px] max-w-[110px]"
                       />
                       <p className="font-semibold text-[12px] ">
                         {truncateText(news?.title, 20)}
@@ -569,7 +584,8 @@ function CategoryWise() {
             <div className=" " key={news._id}>
               {news && (
                 <Link href={`/${news?.slug}`} className=" relative">
-                  <img
+                  <Image  width={500}
+                    height={500}
                     src={news?.images[0]?.url}
                     alt=""
                     className="max-w-full h-[200px] object-cover border-r-[1px] border-l-[1px] border-red-500 pr-3 pl-3"
@@ -635,7 +651,8 @@ function CategoryWise() {
               {vyapar?.map((currElem, index) => (
                 <Link href={`/${currElem?.slug}`} key={currElem._id}>
                   <div className="flex gap-3">
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={currElem?.images[0]?.url}
                       alt=""
                       className="w-[105px]"
@@ -667,7 +684,8 @@ function CategoryWise() {
               {dharm?.map((currElem, index) => (
                 <Link href={`/${currElem?.slug}`} key={currElem._id}>
                   <div className="flex gap-3">
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={currElem?.images[0]?.url}
                       alt=""
                       className="w-[105px]"
@@ -694,7 +712,8 @@ function CategoryWise() {
                 className="block mb-4"
                 target="_blank"
               >
-                <img
+                <Image  width={500}
+                    height={500}
                   src={currElem?.image}
                   alt="Ad Image"
                   className="w-full rounded-lg shadow-md hover:shadow-lg transition duration-300"
@@ -728,7 +747,8 @@ function CategoryWise() {
               {allN2?.map((currElem, index) => (
                 <Link href={`/${currElem?.slug}`} key={currElem._id}>
                   <div className="flex gap-3">
-                    <img
+                    <Image  width={500}
+                    height={500}
                       src={currElem?.images[0]?.url}
                       alt=""
                       className="w-[105px]"

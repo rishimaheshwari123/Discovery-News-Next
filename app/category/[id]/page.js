@@ -181,7 +181,8 @@ const CategoryPage = () => {
                                                 return (
                                                     <Link href={`/${currElem?.slug}`} key={currElem._id}>
                                                         <div className="flex gap-3">
-                                                            <img
+                                                            <Image  width={500}
+                    height={500}
                                                                 src={currElem?.images[0]?.url}
                                                                 alt={currElem.title}
                                                                 className="w-[125px]"

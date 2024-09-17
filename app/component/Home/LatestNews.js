@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link"; // Use Next.js Link component
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { DiCodeigniter } from "react-icons/di";
+import Image from "next/image";
 
 function LatestNews() {
   const { allNews } = useSelector((state) => state.news);
@@ -27,7 +28,8 @@ function LatestNews() {
             {latestNews[0] && (
               <Link href={`/${latestNews[0]?.slug}`} passHref>
                 <div className="relative">
-                  <img
+                   <Image  width={500}
+                    height={500}
                     src={latestNews[0]?.images[0]?.url}
                     alt={latestNews[0]?.title || "Latest news"}
                     className="max-h-[340px] w-full object-cover"
@@ -47,7 +49,8 @@ function LatestNews() {
                 {latestNews.slice(1, 3).map((news) => (
                   <Link href={`/${news?.slug}`} passHref key={news._id}>
                     <div className="mb-4 flex gap-2 relative">
-                      <img
+                       <Image  width={500}
+                    height={500}
                         src={news?.images[0]?.url}
                         alt={news?.title || "News"}
                         className="max-h-[160px] min-w-[150px] w-full object-cover"
@@ -64,7 +67,8 @@ function LatestNews() {
                 {latestNews.slice(3, 5).map((news) => (
                   <Link href={`/${news?.slug}`} passHref key={news._id}>
                     <div className="mb-4 flex gap-2 relative">
-                      <img
+                       <Image  width={500}
+                    height={500}
                         src={news?.images[0]?.url}
                         alt={news?.title || "News"}
                         className="max-h-[160px] w-full object-cover"
@@ -84,7 +88,8 @@ function LatestNews() {
             {latestNews.slice(1).map((news) => (
               <Link href={`/${news?.slug}`} passHref key={news._id}>
                 <div className="mb-4 gap-2 relative inline-block">
-                  <img
+                   <Image  width={500}
+                    height={500}
                     src={news?.images[0]?.url}
                     alt={news?.title || "News"}
                     className="min-w-[150px] w-full object-cover"

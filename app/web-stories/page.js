@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllStories } from "../services/operations/admin";
 import Link from "next/link";
+import Image from "next/image";
 
 const Stories = () => {
     const [stories, setStories] = useState([]);
@@ -53,10 +54,11 @@ const Stories = () => {
                     <Link key={story.id} href={`/web-stories/${story._id}`}>
                         <div className="bg-white shadow rounded-lg overflow-hidden relative">
                             {/* Image */}
-                            <img
+                            <Image  width={500}
+                    height={500}
                                 src={story?.images[0]?.url}
                                 alt={story.title}
-                                className="w-full object-cover"
+                                className="min-w-full object-cover max-h-[300px] min-h-[300px]"
                             />
                             {/* Author and Date on top of the image */}
                             <div className="absolute bottom-0 left-0 right-0 bg-red-600 bg-opacity-75 text-white text-xs p-2">

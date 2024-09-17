@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
+import Image from 'next/image';
 
 const NewsActive = ({ name1, name2 }) => {
   const [activIndex, setNewsActive] = useState(0);
@@ -73,7 +74,8 @@ const NewsActive = ({ name1, name2 }) => {
               {recentNews.map((currElem) => (
                 <Link href={`/${currElem?.slug}`} key={currElem._id}>
                   <div className="flex gap-3">
-                    <img
+                     <Image  width={500}
+                    height={500}
                       src={currElem?.images[0]?.url}
                       alt=""
                       className="w-[105px]"
@@ -116,7 +118,8 @@ const NewsActive = ({ name1, name2 }) => {
                 {Interview.map((currElem) => (
                   <Link href={`/${currElem?.slug}`} key={currElem._id}>
                     <div className="flex gap-3">
-                      <img
+                       <Image  width={500}
+                    height={500}
                         src={currElem?.images[0]?.url}
                         alt=""
                         className="w-[105px]"

@@ -11,6 +11,7 @@ import Link from "next/link";
 import SubNavbar from "../../component/Top Section/SubSection";
 import LogoSpace from "../../component/Top Section/LogoSection";
 import Navbar from "../../component/Top Section/Navbar";
+import Image from "next/image";
 
 const SubCategoryPage = () => {
     const [category, setCategory] = useState(null);
@@ -178,10 +179,11 @@ const SubCategoryPage = () => {
                                                 return (
                                                     <Link href={`/${currElem?.slug}`} key={currElem._id}>
                                                         <div className="flex gap-3">
-                                                            <img
+                                                             <Image  width={500}
+                    height={500}
                                                                 src={currElem?.images[0]?.url}
                                                                 alt={currElem.title}
-                                                                className="w-[125px]"
+                                                                className="min-w-[125px] max-w-[125px]"
                                                             />
                                                             <div>
                                                                 <p className="text-wrap mt-2 text-[20px]">
@@ -277,7 +279,8 @@ const SubCategoryPage = () => {
           {vyapar?.map((currElem, index) => (
             <Link to={`/${currElem?.slug}`} key={currElem._id}>
               <div className="flex gap-3">
-                <img
+                 <Image  width={500}
+                    height={500}
                   src={currElem?.images[0]?.url}
                   alt=""
                   className="w-[105px]"
@@ -312,7 +315,8 @@ const SubCategoryPage = () => {
                                         {dharm?.map((currElem, index) => (
                                             <Link href={`/${currElem?.slug}`} key={currElem._id}>
                                                 <div className="flex gap-3">
-                                                    <img
+                                                     <Image  width={500}
+                    height={500}
                                                         src={currElem?.images[0]?.url}
                                                         alt=""
                                                         className="w-[105px]"
