@@ -1,36 +1,6 @@
 // components/CricketLive.js
 
-import { useEffect } from 'react';
-
 const CricketLive = () => {
-  useEffect(() => {
-    // Set the necessary global variables
-    window.app = 'www.cricwaves.com';
-    window.mo = 'ExtNotf';
-    window.nt = '8';
-    window.mats = '';
-    window.tor = '';
-    window.Width = '292px';
-    window.Height = '170px';
-    window.wi = 'w';
-    window.co = 'ExtNotf';
-    window.ad = '1';
-
-    // Create the external script element
-    const script = document.createElement('script');
-    script.src = '//www.cricwaves.com/cricket/widgets/script/scoreWidgets.js';
-    script.type = 'text/javascript';
-    script.async = true;
-
-    // Append the script to the body
-    document.body.appendChild(script);
-
-    // Cleanup: remove the script when component unmounts
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div>
       {/* Placeholder for the cricket widget */}
@@ -46,6 +16,30 @@ const CricketLive = () => {
           marginWidth="0"
         ></iframe>
       </div>
+
+      {/* Inline script to be executed */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.app = 'www.cricwaves.com';
+            window.mo = 'ExtNotf';
+            window.nt = '8';
+            window.mats = '';
+            window.tor = '';
+            window.Width = '292px';
+            window.Height = '170px';
+            window.wi = 'w';
+            window.co = 'ExtNotf';
+            window.ad = '1';
+            
+            const script = document.createElement('script');
+            script.src = '//www.cricwaves.com/cricket/widgets/script/scoreWidgets.js';
+            script.type = 'text/javascript';
+            script.async = true;
+            document.body.appendChild(script);
+          `,
+        }}
+      ></script>
     </div>
   );
 };
