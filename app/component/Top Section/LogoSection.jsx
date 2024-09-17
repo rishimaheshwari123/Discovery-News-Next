@@ -14,13 +14,13 @@ function LogoSpace() {
          
         />
       </div>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <Image 
           src={banner} 
           alt="Banner" 
          
         />
-      </div>
+      </div> */}
     </div>
   );
 }

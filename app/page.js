@@ -29,6 +29,6 @@ export function generateMetadata({
   params
 }) {
   return {
-    title: "test js"
+    title: "Discovery News"
   }
 }
