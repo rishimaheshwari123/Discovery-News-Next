@@ -95,7 +95,7 @@ const Footer = () => {
                 Admin Login
               </Link>
             ) : (
-              <Link href="https://discoveryindianews.com/login" className="hover:underline">
+              <Link href="https://news-2-two.vercel.app/login" className="hover:underline">
                 Admin Login
               </Link>
             )}

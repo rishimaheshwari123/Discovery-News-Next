@@ -51,8 +51,8 @@ const Contact = () => {
   });
 
   return (
-    <div className="">
-      <h2 className="text-lg font-semibold  bg-red-600  w-fit text-white px-3 py-1">
+    <div>
+      <h2 className="text-lg font-semibold bg-red-600 w-fit text-white px-3 py-1">
         आपकी राय
       </h2>
       <hr className="bg-red-600 h-[2px] -mt-[2px]" />
@@ -66,7 +66,7 @@ const Contact = () => {
             id="message"
             name="message"
             rows="4"
-            className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
+            className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
             onChange={formik.handleChange}
             value={formik.values.message}
           />
@@ -86,7 +86,7 @@ const Contact = () => {
               id="name"
               name="name"
               type="text"
-              className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
+              className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
               onChange={formik.handleChange}
               value={formik.values.name}
             />
@@ -106,7 +106,7 @@ const Contact = () => {
               name="email"
               type="email"
               placeholder="ई-मेल"
-              className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
+              className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
               onChange={formik.handleChange}
               value={formik.values.email}
             />
@@ -127,7 +127,7 @@ const Contact = () => {
             name="location"
             type="text"
             placeholder="शहर"
-            className="w-full p-2 py-3 border border-gray-300  focus:outline-none focus:ring-1 focus:ring-gray-600"
+            className="w-full p-2 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
             onChange={formik.handleChange}
             value={formik.values.location}
           />
@@ -162,7 +162,7 @@ const Contact = () => {
 
         <button
           type="submit"
-          className="w-full py-3 px-4 bg-gray-600 hover:bg-gray-700 text-white   focus:outline-none focus:ring-2 focus:ring-red-600"
+          className="w-full py-3 px-4 bg-gray-600 hover:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
         >
           Submit
         </button>
