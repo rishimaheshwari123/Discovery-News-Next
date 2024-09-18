@@ -325,7 +325,7 @@ export async function generateMetadata({ params }) {
     const news = await getSingleNews(id);
     const imageUrl = news.images[0]?.url || "";
     const description = stripHtmlTags(news.description);
-    const url = `https://discoveryindianews.com/${news.slug}`;
+    const url = `https://next-js-sable-ten.vercel.app/${news.slug}`;
 
     return {
       title: news.title,
