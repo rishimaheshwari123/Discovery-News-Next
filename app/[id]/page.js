@@ -337,7 +337,9 @@ export async function generateMetadata({ params }) {
         title: news.title,
         description: description,
         url: url,
-        image: imageUrl,
+        icons: {
+          icon: imageUrl,
+        },
         type: 'article', // Type of content
         site_name: 'Your Site Name', // Optional
       },
@@ -346,7 +348,9 @@ export async function generateMetadata({ params }) {
         site: '@yourTwitterHandle', // Your Twitter handle
         title: news.title,
         description: description,
-        image: imageUrl,
+        icons: {
+          icon: imageUrl,
+        },
       },
     };
   } catch (error) {
