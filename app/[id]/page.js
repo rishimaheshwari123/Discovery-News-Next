@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import TopAllComponent from "../component/Home/TopAllComponent";
 import Image from "next/image";
+import Head from 'next/head';
 // Fetch news using axios
 async function getSingleNews(id) {
   try {
@@ -90,8 +91,26 @@ export default async function SingleNews({ params }) {
     return text;
   };
 
+  const newsdescription = stripHtmlTags(news.description);
+  const newsimageUrl = news.images[0]?.url || "";
+  const newsurl = `https://next-js-sable-ten.vercel.app/${news.slug}`;
+
+
   return (
     <>
+          <Head>
+        <title>{news?.title}</title>
+        <meta name="description" content={newsdescription} />
+        <meta property="og:title" content={news?.title} />
+        <meta property="og:description" content={newsdescription} />
+        <meta property="og:image" content={newsimageUrl} />
+        <meta property="og:url" content={newsurl} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={news?.title} />
+        <meta name="twitter:description" content={newsdescription} />
+        <meta name="twitter:image" content={newsimageUrl} />
+      </Head>
       <TopAllComponent />
       <div className=" max-w-7xl mx-auto p-4">
         <div className=" flex flex-col lg:flex-row gap-5 ">
