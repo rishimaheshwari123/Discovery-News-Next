@@ -12,11 +12,12 @@ import SubNavbar from "../../component/Top Section/SubSection";
 import LogoSpace from "../../component/Top Section/LogoSection";
 import Navbar from "../../component/Top Section/Navbar";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 
 const CategoryPage = () => {
-    const pathname = usePathname();
-    const segments = pathname ? pathname.split("/") : [];
-    const id = segments[segments.length - 1] || "";
+    const { id } = useParams();
+    // const { id } = router.query;  // Extract 'id' from query params
+
 
 
     const [category, setCategory] = useState(null);
@@ -29,6 +30,7 @@ const CategoryPage = () => {
         try {
             const response = await fetchSingleCategory(id, currentPage, itemsPerPage);
             setCategory(response.category);
+           
             setNews(response.news);
             setTotalPages(Math.ceil(response.pagination.total / itemsPerPage));
         } catch (error) {
@@ -36,6 +38,16 @@ const CategoryPage = () => {
         }
     };
 
+
+    useEffect(() => {
+        console.log(id)
+        if (category?.name) {
+            document.title = `${category.name} - Discovery News`;
+        } else {
+            document.title = "Discovery News";
+        }
+    }, [category]);
+    
     useEffect(() => {
         fetchCategoryData(id, currentPage, itemsPerPage);
     }, [id, currentPage]);
@@ -146,7 +158,7 @@ const CategoryPage = () => {
 
         return pageNumbers;
     };
-
+ 
     return (
         <div>
             <SubNavbar />

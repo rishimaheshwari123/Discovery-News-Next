@@ -4,8 +4,9 @@ import { useSpring, animated } from '@react-spring/web';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { IoIosArrowBack, IoIosArrowForward, IoMdRefresh } from 'react-icons/io';
 import { getStory } from '../../services/operations/admin';
-import { usePathname } from "next/navigation";
+
 import Image from 'next/image';
+import { useParams } from "next/navigation";
 
 const animationTypes = [
     { from: { transform: 'translateX(-100%)', opacity: 0 }, to: { transform: 'translateX(0%)', opacity: 1 } },
@@ -17,9 +18,14 @@ const animationTypes = [
 ];
 
 const StatusSlider = () => {
-    const pathname = usePathname();
-    const segments = pathname ? pathname.split("/") : [];
-    const id = segments[segments.length - 1] || ""; const [story, setStory] = useState(null); // Initially set to null
+    // const pathname = usePathname();
+    // const segments = pathname ? pathname.split("/") : [];
+    // const id = segments[segments.length - 1] || "";
+     const [story, setStory] = useState(null); // Initially set to null
+    const { id } = useParams();
+
+
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const [animationProps, setAnimationProps] = useState(animationTypes[0]);

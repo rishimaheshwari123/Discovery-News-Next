@@ -8,6 +8,9 @@ import { getAllNews } from './services/operations/admin';
 import { useEffect } from 'react';
 import Footer from './component/Footer'
 
+
+
+
 export default function RootLayout({ children }) {
 
   return (

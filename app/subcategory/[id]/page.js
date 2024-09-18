@@ -12,6 +12,7 @@ import SubNavbar from "../../component/Top Section/SubSection";
 import LogoSpace from "../../component/Top Section/LogoSection";
 import Navbar from "../../component/Top Section/Navbar";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 
 const SubCategoryPage = () => {
     const [category, setCategory] = useState(null);
@@ -19,9 +20,7 @@ const SubCategoryPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const itemsPerPage = 10;
-    const pathname = usePathname();
-    const segments = pathname ? pathname.split("/") : [];
-    const id = segments[segments.length - 1] || "";
+    const { id } = useParams();
 
     const fetchCategoryData = async (id, currentPage, itemsPerPage) => {
         try {
