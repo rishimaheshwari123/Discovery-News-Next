@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
+    
+  trailingSlash: true,
+  images: {
       remotePatterns: [{
         hostname:'res.cloudinary.com'
       }],

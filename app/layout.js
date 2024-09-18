@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';   // Import Toastify CSS
 import "./globals.css"
 import { getAllNews } from './services/operations/admin';
 import { useEffect } from 'react';
+import Footer from './component/Footer'
 
 export default function RootLayout({ children }) {
 
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
       <body>
         <Provider store={store}>  {/* Wrap your app with Provider to make the store available */}
           {children}
+          <Footer />
           <ToastContainer />  {/* Add ToastContainer for notifications */}
         </Provider>
       </body>
