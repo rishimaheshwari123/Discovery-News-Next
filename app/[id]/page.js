@@ -330,27 +330,18 @@ export async function generateMetadata({ params }) {
     return {
       title: news.title,
       description: description,
-      icons: {
-        icon: imageUrl,
-      },
       openGraph: {
         title: news.title,
         description: description,
         url: url,
-        icons: {
-          icon: imageUrl,
-        },
-        type: 'article', // Type of content
-        site_name: 'Your Site Name', // Optional
+        image: imageUrl,
+        type: 'article',
       },
       twitter: {
-        card: 'summary_large_image', // Use 'summary' for smaller images or 'summary_large_image' for larger images
-        site: '@yourTwitterHandle', // Your Twitter handle
+        card: 'summary_large_image',
         title: news.title,
         description: description,
-        icons: {
-          icon: imageUrl,
-        },
+        image: imageUrl,
       },
     };
   } catch (error) {
@@ -361,11 +352,9 @@ export async function generateMetadata({ params }) {
         description: error.message,
         image:
           "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
-        type: 'website',
       },
       twitter: {
         card: 'summary',
-        site: '@yourTwitterHandle',
         title: "Error loading news",
         description: error.message,
         image:
@@ -374,3 +363,4 @@ export async function generateMetadata({ params }) {
     };
   }
 }
+
