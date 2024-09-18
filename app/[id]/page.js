@@ -110,6 +110,11 @@ export default async function SingleNews({ params }) {
         <meta name="twitter:title" content={news?.title} />
         <meta name="twitter:description" content={newsdescription} />
         <meta name="twitter:image" content={newsimageUrl} />
+
+        {/* Optional: Add Facebook and WhatsApp-specific image tags */}
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  
       </Head>
       <TopAllComponent />
       <div className=" max-w-7xl mx-auto p-4">
