@@ -110,11 +110,11 @@ export default async function SingleNews({ params }) {
         <meta name="twitter:title" content={news?.title} />
         <meta name="twitter:description" content={newsdescription} />
         <meta name="twitter:image" content={newsimageUrl} />
-
+<link rel="icon" href={newsimageUrl} type="image/x-icon" />
         {/* Optional: Add Facebook and WhatsApp-specific image tags */}
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  
+
       </Head>
       <TopAllComponent />
       <div className=" max-w-7xl mx-auto p-4">
@@ -354,10 +354,16 @@ export async function generateMetadata({ params }) {
     return {
       title: news.title,
       description: description,
+      icons: {
+        icon: imageUrl,
+      },
       openGraph: {
         title: news.title,
         description: description,
         url: url,
+        icons: {
+          icon: imageUrl,
+        },
         image: imageUrl,
         type: 'article',
       },
