@@ -375,7 +375,11 @@ export async function generateMetadata({ params }) {
         card: 'summary_large_image',
         title: news.title,
         description: description,
-        image: imageUrl,
+        images: [
+          {
+            url:imageUrl,
+          }
+        ],
       },
     };
   } catch (error) {
