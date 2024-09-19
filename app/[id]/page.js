@@ -364,7 +364,11 @@ export async function generateMetadata({ params }) {
         icons: {
           icon: imageUrl,
         },
-        image: imageUrl,
+        images: [
+          {
+            url:imageUrl,
+          }
+        ],
         type: 'article',
       },
       twitter: {
