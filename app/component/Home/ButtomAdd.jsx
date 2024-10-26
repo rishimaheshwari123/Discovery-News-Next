@@ -28,15 +28,17 @@ const ButtomAdd = () => {
               currElem?.type === "buttom-add" && (
                 <SwiperSlide key={index}>
                   <Link href={currElem?.url} passHref>
-                    <a target="_blank" rel="noopener noreferrer">
+                    <p>
                       <Image
+                         width={500}
+                         height={500}
                         src={currElem?.image}
                         alt="not found"
                         layout="responsive"
                        
                         className="w-full"
                       />
-                    </a>
+                    </p>
                   </Link>
                 </SwiperSlide>
               )

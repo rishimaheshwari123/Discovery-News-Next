@@ -302,7 +302,8 @@ export default async function SingleNews({ params }) {
 }
 
 function stripHtmlTags(html) {
-  return html.replace(/<\/?[^>]+(>|$)/g, ""); // Regex to remove HTML tags
+  let data = html.replace(/<\/?[^>]+(>|$)/g, ""); // Regex to remove HTML tags
+  return data.slice(0,200)
 }
 
 // export async function generateMetadata({ params }) {
