@@ -367,7 +367,9 @@ export async function generateMetadata({ params }) {
         },
         images: [
           {
-            url:imageUrl,
+            url: imageUrl,
+            width: 1200,  // Set to preferred width
+            height: 630,  // Set to preferred height
           }
         ],
         type: 'article',
@@ -378,7 +380,9 @@ export async function generateMetadata({ params }) {
         description: description,
         images: [
           {
-            url:imageUrl,
+            url: imageUrl,
+            width: 1200,  // Set to preferred width
+            height: 630,  // Set to preferred height
           }
         ],
       },
@@ -389,17 +393,30 @@ export async function generateMetadata({ params }) {
       openGraph: {
         title: "Error loading news",
         description: error.message,
-        image:
-          "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+        images: [
+          {
+            url:
+              "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+            width: 1200,
+            height: 630,
+          },
+        ],
       },
       twitter: {
         card: 'summary',
         title: "Error loading news",
         description: error.message,
-        image:
-          "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+        images: [
+          {
+            url:
+              "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+            width: 1200,
+            height: 630,
+          },
+        ],
       },
     };
   }
 }
+
 
