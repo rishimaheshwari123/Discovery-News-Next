@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import CricketLive from "../component/Home/RightSide/CricketLive";
-import NewsActive from "../component/Home/RightSide/NewsActive";
-import Contact from "../component/Home/RightSide/Contact";
-import { format } from "date-fns";
+import CricketLive from "../../component/Home/RightSide/CricketLive";
+import NewsActive from "../../component/Home/RightSide/NewsActive";
+import Contact from "../../component/Home/RightSide/Contact";
+import {format} from "date-fns";
 import {
   FaFacebookF,
   FaTwitter,
@@ -13,9 +13,8 @@ import {
   FaRegEye,
 } from "react-icons/fa";
 import Link from "next/link";
-import TopAllComponent from "../component/Home/TopAllComponent";
 import Image from "next/image";
-import Head from 'next/head';
+import Head from "next/head";
 // Fetch news using axios
 async function getSingleNews(id) {
   try {
@@ -46,8 +45,84 @@ async function getAllNewsNews() {
   }
 }
 
-export default async function SingleNews({ params }) {
-  const { id } = params;
+export async function generateMetadata({params}) {
+  const {id} = params;
+
+  try {
+    const news = await getSingleNews(id);
+    const imageUrl = news.images[0]?.url || "";
+    const description = stripHtmlTags(news.description);
+    const url = `https://discoveryindianews.com/${news.slug}`;
+
+    return {
+      title: news.title,
+      description: description,
+      icons: {
+        icon: imageUrl,
+      },
+      openGraph: {
+        title: news.title,
+        description: description,
+        url: url,
+        icons: {
+          icon: imageUrl,
+        },
+        images: [
+          {
+            url: imageUrl,
+            width: 1200, // Set to preferred width
+            height: 630, // Set to preferred height
+          },
+        ],
+        type: "article",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: news.title,
+        description: description,
+        image: imageUrl,
+        url: url,
+        images: [
+          {
+            url: imageUrl,
+            width: 1200, // Set to preferred width
+            height: 630, // Set to preferred height
+          },
+        ],
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Error loading news",
+      openGraph: {
+        title: "Error loading news",
+        description: error.message,
+        images: [
+          {
+            url: "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+            width: 1200,
+            height: 630,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary",
+        title: "Error loading news",
+        description: error.message,
+        images: [
+          {
+            url: "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+            width: 1200,
+            height: 630,
+          },
+        ],
+      },
+    };
+  }
+}
+
+export default async function page({params}) {
+  const {id} = params;
 
   let news;
   let allNews;
@@ -95,10 +170,9 @@ export default async function SingleNews({ params }) {
   const newsimageUrl = news.images[0]?.url || "";
   const newsurl = `https://discoveryindianews.com/${news.slug}`;
 
-
   return (
     <>
-          <Head>
+      <Head>
         <title>{news?.title}</title>
         <meta name="description" content={newsdescription} />
         <meta property="og:title" content={news?.title} />
@@ -110,13 +184,12 @@ export default async function SingleNews({ params }) {
         <meta name="twitter:title" content={news?.title} />
         <meta name="twitter:description" content={newsdescription} />
         <meta name="twitter:image" content={newsimageUrl} />
-<link rel="icon" href={newsimageUrl} type="image/x-icon" />
+        <link rel="icon" href={newsimageUrl} type="image/x-icon" />
         {/* Optional: Add Facebook and WhatsApp-specific image tags */}
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Head>
-      <TopAllComponent />
+
       <div className=" max-w-7xl mx-auto p-4">
         <div className=" flex flex-col lg:flex-row gap-5 ">
           {/* News Details */}
@@ -140,61 +213,55 @@ export default async function SingleNews({ params }) {
               </div>
 
               <div className="flex space-x-4 mt-4">
-                <a
+                <Link
                   href={`https://www.facebook.com/sharer/sharer.php?u=https://www.discoveryindianews.com/${news?.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-blue-800 rounded-lg"
-                >
+                  className="p-2 bg-blue-800 rounded-lg">
                   <FaFacebookF className="text-white" />
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href={`https://twitter.com/intent/tweet?url=${currentUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-blue-500 rounded-lg"
-                >
+                  className="p-2 bg-blue-500 rounded-lg">
                   <FaTwitter className="text-white" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href={`https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-blue-400 rounded-lg"
-                >
+                  className="p-2 bg-blue-400 rounded-lg">
                   <FaLinkedinIn className="text-blue-700" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
                     `${news?.title}\nhttps://discoveryindianews.com/${news?.slug}\nVisit the latest news:\nhttps://www.discoveryindianews.com/`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-green-600 rounded-lg lg:hidden"
-                >
+                  className="p-2 bg-green-600 rounded-lg lg:hidden">
                   <FaWhatsapp className="text-white" />
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href={`https://web.whatsapp.com/send?text=${encodeURIComponent(
                     `${news?.title}\nhttps://discoveryindianews.com/${news?.slug}\nVisit the latest news:\nhttps://www.discoveryindianews.com/`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-green-600 rounded-lg hidden lg:block"
-                >
+                  className="p-2 bg-green-600 rounded-lg hidden lg:block">
                   <FaWhatsapp className="text-white" />
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href={`mailto:?subject=Check this out&body=${currentUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-gray-600 rounded-lg"
-                >
+                  className="p-2 bg-gray-600 rounded-lg">
                   <FaEnvelope className="text-gray-100" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -218,8 +285,9 @@ export default async function SingleNews({ params }) {
                   {news?.location} {" ।"}
                 </span>
                 <span
-                  dangerouslySetInnerHTML={{ __html: news?.description || "" }}
-                ></span>
+                  dangerouslySetInnerHTML={{
+                    __html: news?.description || "",
+                  }}></span>
               </div>
             </div>
 
@@ -274,8 +342,7 @@ export default async function SingleNews({ params }) {
                       <Link
                         href={`/${currElem?.slug}`}
                         key={currElem._id}
-                        passHref
-                      >
+                        passHref>
                         <div className="flex gap-3">
                           <Image
                             width={500}
@@ -303,7 +370,7 @@ export default async function SingleNews({ params }) {
 
 function stripHtmlTags(html) {
   let data = html.replace(/<\/?[^>]+(>|$)/g, ""); // Regex to remove HTML tags
-  return data.slice(0,200)
+  return data.slice(0, 200);
 }
 
 // export async function generateMetadata({ params }) {
@@ -341,82 +408,3 @@ function stripHtmlTags(html) {
 //     };
 //   }
 // }
-
-
-export async function generateMetadata({ params }) {
-  const { id } = params;
-
-  try {
-    const news = await getSingleNews(id);
-    const imageUrl = news.images[0]?.url || "";
-    const description = stripHtmlTags(news.description);
-    const url = `https://discoveryindianews.com/${news.slug}`;
-
-    return {
-      title: news.title,
-      description: description,
-      icons: {
-        icon: imageUrl,
-      },
-      openGraph: {
-        title: news.title,
-        description: description,
-        url: url,
-        icons: {
-          icon: imageUrl,
-        },
-        images: [
-          {
-            url: imageUrl,
-            width: 1200,  // Set to preferred width
-            height: 630,  // Set to preferred height
-          }
-        ],
-        type: 'article',
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: news.title,
-        description: description,
-        images: [
-          {
-            url: imageUrl,
-            width: 1200,  // Set to preferred width
-            height: 630,  // Set to preferred height
-          }
-        ],
-      },
-    };
-  } catch (error) {
-    return {
-      title: "Error loading news",
-      openGraph: {
-        title: "Error loading news",
-        description: error.message,
-        images: [
-          {
-            url:
-              "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
-            width: 1200,
-            height: 630,
-          },
-        ],
-      },
-      twitter: {
-        card: 'summary',
-        title: "Error loading news",
-        description: error.message,
-        images: [
-          {
-            url:
-              "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
-            width: 1200,
-            height: 630,
-          },
-        ],
-      },
-    };
-  }
-}
-
-

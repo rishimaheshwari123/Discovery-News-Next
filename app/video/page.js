@@ -3,8 +3,8 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setYT } from '../redux/newsSlice';
-import TopAllComponent from '../component/Home/TopAllComponent';
+import { setYT } from '../../redux/newsSlice';
+
 function Videos() {
   const { yt = [] } = useSelector((state) => state.news); // Default value for yt
   const BASE_URL = 'https://api.discoveryindianews.com/api/v1';
@@ -40,7 +40,7 @@ function Videos() {
 
   return (
     <div className=''>
-    <TopAllComponent />
+   
       <div>
         <h3 className="text-center font-semibold text-3xl mt-5">Videos News</h3>
       </div>

@@ -1,30 +1,17 @@
 // "use client";
 
-
-import MainHomePage from './component/MainHomePage';
-import SubNavbar from './component/Top Section/SubSection';
-import LogoSpace from './component/Top Section/LogoSection';
-import Navbar from './component/Top Section/Navbar';
-import StateSubcategories from "./component/Home/StateCategories"
-import BreakingNews from "./component/BreakingNews"
-
+import MainHomePage from "../component/MainHomePage";
 export default function Home() {
-  
+
+
   return (
-    <>
-      <SubNavbar />
-      <LogoSpace />
-      <Navbar />
-      <StateSubcategories />
-      <BreakingNews />
-      <div>
-        <MainHomePage />
-      </div>
-    </>
+    <div>
+      <MainHomePage />
+    </div>
   );
 }
 
-export function generateMetadata({ params }) {
+export function generateMetadata({params}) {
   return {
     title: params?.title || "Discovery News",
     description: "Stay updated with the latest news from Discovery India.",
@@ -37,16 +24,21 @@ export function generateMetadata({ params }) {
           url: "https://www.discoveryindianews.com/apple-touch-icon.png",
           width: 800,
           height: 600,
-          alt: "Discovery News"
-        }
+          alt: "Discovery News",
+        },
       ],
-      type: 'website',
+      type: "website",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: params?.title || "Discovery News",
       description: "Stay updated with the latest news from Discovery India.",
-      images: ["https://www.discoveryindianews.com/apple-touch-icon.png"]
-    }
+      images: ["https://www.discoveryindianews.com/apple-touch-icon.png"],
+    },
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/apple-touch-icon.png",
+      apple: "/apple-touch-icon.png",
+    },
   };
 }

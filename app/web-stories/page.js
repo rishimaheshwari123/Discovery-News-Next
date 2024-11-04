@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { getAllStories } from "../services/operations/admin";
+import { getAllStories } from "../../services/operations/admin";
 import Link from "next/link";
 import Image from "next/image";
 

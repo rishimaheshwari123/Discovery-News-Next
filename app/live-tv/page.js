@@ -1,7 +1,6 @@
-'use client'
-import React, { useEffect, useState } from "react";
-import TopAllComponent from "../component/Home/TopAllComponent";
-import { fetchLiveStreams } from "../services/operations/admin";
+"use client";
+import React, {useEffect, useState} from "react";
+import {fetchLiveStreams} from "../../services/operations/admin";
 
 function Live() {
   const [liveStreams, setLiveStreams] = useState([]);
@@ -32,7 +31,6 @@ function Live() {
 
   return (
     <div>
-    <TopAllComponent />
       <div className="mt-20 min-h-screen flex justify-center items-center">
         {liveStreams.length === 0 ? (
           <div className="text-center">
@@ -55,8 +53,7 @@ function Live() {
                     title={stream.name}
                     frameBorder="0"
                     allow="autoplay; encrypted-media"
-                    allowFullScreen
-                  ></iframe>
+                    allowFullScreen></iframe>
                 </div>
               </div>
             ))}

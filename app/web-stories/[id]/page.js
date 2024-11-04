@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { IoIosArrowBack, IoIosArrowForward, IoMdRefresh } from 'react-icons/io';
-import { getStory } from '../../services/operations/admin';
+import { getStory } from '../../../services/operations/admin';
 
 import Image from 'next/image';
 import { useParams } from "next/navigation";

@@ -1,16 +1,12 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
-import { fetchSingleCategory } from "../../services/operations/admin";
-import CricketLive from "../../component/Home/RightSide/Contact";
-import NewsActive from "../../component/Home/RightSide/NewsActive";
-import Contact from "../../component/singleNews/Contact";
+import { fetchSingleCategory } from "../../../services/operations/admin";
+import CricketLive from "../../../component/Home/RightSide/Contact";
+import NewsActive from "../../../component/Home/RightSide/NewsActive";
+import Contact from "../../../component/singleNews/Contact";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import SubNavbar from "../../component/Top Section/SubSection";
-import LogoSpace from "../../component/Top Section/LogoSection";
-import Navbar from "../../component/Top Section/Navbar";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
@@ -161,9 +157,6 @@ const CategoryPage = () => {
  
     return (
         <div>
-            <SubNavbar />
-            <LogoSpace />
-            <Navbar />
             <div className="max-w-7xl mx-auto p-4">
                 <div className="flex flex-col lg:flex-row gap-5">
                     {/* News Details */}

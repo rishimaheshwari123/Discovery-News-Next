@@ -233,14 +233,6 @@ export function compareOtp(otp, email, navigate) {
 
 
 
-
-
-
-
-
-
-
-
 export const getAllNews = () => async (dispatch) => {
   try {
     const response = await apiConnector("GET", GET_ALL_NEWS_API);
