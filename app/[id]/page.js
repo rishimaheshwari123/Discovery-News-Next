@@ -45,8 +45,8 @@ async function getAllNewsNews() {
   }
 }
 
-export async function generateMetadata({params}) {
-  const {id} = params;
+export async function generateMetadata({ params }) {
+  const { id } = params;
 
   try {
     const news = await getSingleNews(id);
@@ -70,24 +70,22 @@ export async function generateMetadata({params}) {
         images: [
           {
             url: imageUrl,
-            width: 1200, // Set to preferred width
-            height: 630, // Set to preferred height
-          },
+            width: 1200,  // Set to preferred width
+            height: 630,  // Set to preferred height
+          }
         ],
-        type: "article",
+        type: 'article',
       },
       twitter: {
-        card: "summary_large_image",
+        card: 'summary_large_image',
         title: news.title,
         description: description,
-        image: imageUrl,
-        url: url,
         images: [
           {
             url: imageUrl,
-            width: 1200, // Set to preferred width
-            height: 630, // Set to preferred height
-          },
+            width: 1200,  // Set to preferred width
+            height: 630,  // Set to preferred height
+          }
         ],
       },
     };
@@ -99,19 +97,21 @@ export async function generateMetadata({params}) {
         description: error.message,
         images: [
           {
-            url: "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+            url:
+              "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
             width: 1200,
             height: 630,
           },
         ],
       },
       twitter: {
-        card: "summary",
+        card: 'summary',
         title: "Error loading news",
         description: error.message,
         images: [
           {
-            url: "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
+            url:
+              "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg",
             width: 1200,
             height: 630,
           },
@@ -373,38 +373,3 @@ function stripHtmlTags(html) {
   return data.slice(0, 200);
 }
 
-// export async function generateMetadata({ params }) {
-//   const { id } = params;
-
-//   try {
-//     const news = await getSingleNews(id);
-//     const imageUrl = news.images[0]?.url || "";
-
-//     return {
-//       title: news.title,
-//       description: stripHtmlTags(news.description),
-//       icons: {
-//         icon: imageUrl,
-//       },
-//       openGraph: {
-//         title: news.title,
-//         description: stripHtmlTags(news.description),
-//         url: `https://discoveryindianews.com/${news.slug}`,
-//         image: imageUrl,
-//         icons: {
-//           icon: imageUrl,
-//         },
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       title: "Error loading news",
-//       openGraph: {
-//         title: "Error loading news",
-//         description: error.message,
-//         image:
-//           "https://res.cloudinary.com/dsvotvxhq/image/upload/v1725519475/INEXT%20-%20NEWS2/wwhr7nqygk5gyvcjfjf2.jpg", // Default image for error
-//       },
-//     };
-//   }
-// }
